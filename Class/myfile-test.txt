@@ -1,0 +1,1 @@
+{"name": "Eyal", "age": 18, "hobbies": ["coding", "eating"]}
