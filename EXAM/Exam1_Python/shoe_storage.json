@@ -1,0 +1,94 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "brand": "nike",
+            "name": "air max",
+            "price" : 100
+        },
+        {
+            "id": 2,
+            "brand": "adidas",
+            "name": "ultraboost",
+            "price" : 80
+        },
+        {
+           "id": 3,
+            "brand": "adidas",
+            "name": "pw solar",
+            "price" : 127
+        },
+        {
+            "id": 4,
+            "brand": "new balance",
+            "name": "574 sport",
+            "price" : 55
+        }
+    ],
+      "stores": [
+        {
+            "city": "New York",
+            "shoes_available": [
+              { "id":1,
+                "num available" : 5,
+                "colors_available": ["blue", "red", "black"]
+              },
+              { "id":2,
+                "num available" : 0,
+                "color_available" :[]
+              },
+              { "id":3,
+                "num available" : 3,
+                "color_available" :["blue", "black"]
+              },
+              { "id":4,
+                "num available" : 0,
+                "color_available" :[]
+              }
+            ]
+        },
+        {
+            "city": "Paris",
+            "shoes_available": [
+              { "id":1,
+                "num available" : 10,
+                "colors_available": ["white", "pink/yellow", "grey"]
+              },
+              { "id":2,
+                "num available" : 5,
+                "colors_available": ["white", "black", "orange"]
+              },
+              { "id":3,
+                "num available" : 22,
+                "colors_available": ["blue", "red", "black"]
+              },
+              { "id":4,
+                "num available" : 0,
+                "color_available" :[]
+
+              }
+            ]
+        },
+       {
+            "city": "Tel Aviv",
+            "shoes_available": [
+              { "id":1,
+                "num available" : 0,
+                "color_available" :[]
+              },
+              { "id":2,
+                "num available" : 0,
+                "color_available" :[]
+              },
+              { "id":3,
+                "num available" : 18,
+                "colors_available": ["white", "pink/yellow", "grey"]
+              },
+              { "id":4,
+                "num available" : 2,
+                "colors_available": ["blue", "red", "black"]
+              }
+            ]
+        }
+    ]
+}

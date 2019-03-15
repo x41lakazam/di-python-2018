@@ -1,0 +1,35 @@
+{
+    "items": [
+        {
+            "name": "Soup",
+            "price": 10,
+            "Spice Level":"B",
+            "Gluten Index": false
+        },
+        {
+           "name": "Hamburger",
+            "price": 15,
+            "Spice Level":"A",
+            "Gluten Index": true
+        },
+        {
+            "name": "Salad",
+            "price": 18,
+            "Spice Level":"A",
+            "Gluten Index": false
+        },
+        {
+            "name": "French Fries",
+            "price": 5,
+            "Spice Level":"C",
+            "Gluten Index": false
+        },
+        {
+            "name": "Boeuf Bourgignon",
+            "price": 25,
+            "Spice Level":"B",
+            "Gluten Index": true
+        }
+    ]
+}
+
