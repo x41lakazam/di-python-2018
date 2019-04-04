@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>Default title</title>
+        {% endif %}
+    </head>
+    <body>
+        <h1>Welcome to my app</h1>
+        <p>{{ user_status }}</p>
+        <small>This app is managed by {{ author_name }}</small>
+    </body>
+</html>
