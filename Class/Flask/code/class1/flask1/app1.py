@@ -1,6 +1,8 @@
 import flask
 from datetime import datetime
 
+import fake_db as db  # SIMULATION
+
 app = flask.Flask(__name__)
 
 @app.route("/")
@@ -20,5 +22,24 @@ def get_time():
 def say_hello():
     return flask.render_template("say_hello_template.html",
                                  name="Henry")
+
+@app.route("/timeline")
+def timeline():
+    posts = [
+        ('John', 'Beautiful day in New York!'),
+        ('Micheal', 'Loved the last Star Wars !'),
+        ('Sundar Pichai', 'I love python')
+    ]
+
+    return flask.render_template("timeline.html",
+                                 posts=posts)
+
+
+@app.route("/user/<int:id>")
+def user_page(id):
+    user = db.users[int(id)]
+    return flask.render_template('user_page.html',
+                                user=user)
+
 
 app.run(port=5000, debug=True)

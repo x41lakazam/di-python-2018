@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    </head>
+    <body>
+        <!--// Add a navbar-->
+        <div id="navbar">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('timeline') }}">Posts</a>
+        </div>
+        <hr>
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for post in posts %}
+        <p>{{ post[0] }} says: {{ post[1] }}</p>
+    {% endfor %}
+{% endblock %}
