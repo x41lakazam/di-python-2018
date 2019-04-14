@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>My page</title>
+    {% endif %}
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('new_post') }}">New Post</a>
+        <a href="{{ url_for('new_user') }}">Sign up</a>
+    </div>
+    {% block content %}{% endblock %}
+    {% if get_flashed_messages() %}
+        {% for msg in get_flashed_messages() %}
+            <li>{{ msg }}</li>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
