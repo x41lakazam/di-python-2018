@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c67ae43-f79a-42f1-8874-98162df321a5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../class 3/app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/app/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/app/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/app/templates/newuser.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/myapp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/venv/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/venv/lib/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/venv/lib/python3.7/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/venv/lib/python3.7/site-packages/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../class 3/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask1 - create an app/.ipynb_checkpoints/First App-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask1 - create an app/First App.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask2 - use template/.ipynb_checkpoints/Index template-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask2 - use template/.ipynb_checkpoints/Template inheritance-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask2 - use template/.ipynb_checkpoints/Timeline template-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask2 - use template/Index template.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask2 - use template/Template inheritance.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask2 - use template/Timeline template.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask3 - forms/.ipynb_checkpoints/Add post-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Practical/flask3 - forms/Add post.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Theory/.ipynb_checkpoints/7- Web forms-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Theory/.ipynb_checkpoints/7- Web forms-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Theory/7- Web forms.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Theory/7- Web forms.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="6c67ae43-f79a-42f1-8874-98162df321a5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +80,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
