@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block mainblock %}
+
+    <ul class="user_list">
+    {% for user in users %}
+        <li><a href="{{ url_for('userpage', user_id=user.id) }}">- {{ user.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

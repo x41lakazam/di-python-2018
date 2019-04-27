@@ -1,0 +1,47 @@
+body {
+    text-align: center;
+    background: #5cdb95;
+    color: #edf5e1;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  color: #edf5e1
+}
+
+.navbar {
+    color: #05386b;
+}
+
+.footer {
+    color: #05386b;
+}
+.user_posts {
+    text-align: left;
+}
+
+.user_posts ul{
+    list-style-type: none;
+}
+
+.user_list {
+    list-style-type:none;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+.user_list a{
+    color: #edf5e1;
+}
+
+.user_list a{
+    color: #edf5e1;
+}
+
+.user_list a:hover{
+  color: #05386b
+}

@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "name": "Eyal",
+      "email": "eyal@gmail.com",
+      "posts": [
+        "I love python",
+        "Hello world"
+      ]
+    },
+
+    {
+      "id": 1,
+      "name": "Sean",
+      "email": "sean@gmail.com",
+      "posts": [
+        "sean love python",
+        "Hello world"
+      ]
+    },
+
+    {
+      "id": 2,
+      "name": "Yossi",
+      "email": "yossi@gmail.com",
+      "posts": [
+        "yossi love python",
+        "Hello world"
+      ]
+    }
+  ]
+}

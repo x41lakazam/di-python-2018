@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block mainblock %}
+<div class="user_posts">
+    <h3>{{ user.name }}'s posts:</h3>
+    <ul>
+        {% for post in user.posts %}
+        <li>- {{ post }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

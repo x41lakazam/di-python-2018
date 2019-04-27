@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css')}}">
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="{{ url_for('homepage') }}">Home</a>
+        </div>
+
+        {% block mainblock %}
+        {% endblock %}
+
+        <div class="footer">
+            <small>-- Thanks for visiting --</small>
+        </div>
+    </body>
+</html>
