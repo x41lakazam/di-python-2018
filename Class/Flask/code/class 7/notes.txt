@@ -1,0 +1,66 @@
+1) Project structure at the beginning
+### This is just an example project structure ###
+
+=== Root directory structure ===
+
+> main file --> python file most of the time, we name it with the name of our site. This is
+the mother file, this is the file that you want to run to run your project.
+In this file, you want to import the apps, and run them.
+
+YOU NEED TO TELL TO FLASK WHAT FILE TO RUN (with export FLASK_APP="myfile.py" for unix
+                                                 set FLASK_APP="myfile.py" for msdos)
+
+> Apps directory: Every directory is a flask application, in general we name it the name of the app
+
+FOR EXAMPLE:
+- google.com  | - Root directory
+-- drive        |
+-- gmail        | - Apps
+-- youtube      |
+-- main.py      | - main file
+
+=== App directory structure ===
+You can write anything in one file, or you can split it to many files and import them,
+for the flexibility it's always better to split them.
+Here is my structure:
+One file for:
+- The init   - __init__.py (The file that is ran when we import the package) here you want to define the FlaskApp
+- The routes - routes.py (the views)
+- The forms  - forms.py  (the forms)
+- The models - models.py (the classes)
+- static/    - static files, the css, javascript, pictures
+- templates/ - all the templates (html files)
+
+=== What to do when we create an app ==
+1) Creating a Flask object in the __init__.py
+2) Import it and run it from main.py
+3) Create the base template
+4) Create your pages
+5) import everything in __init__
+
+=== What to do when we want to create a page ===
+1) Know what you want to do
+2) Open this four files at the same time
+- routes.py
+- page_template.html
+- forms.py (if you need it)
+- models.py
+3) Create the template
+4) Create the models (if needed)
+5) Create the forms (if needed)
+6) Create the view & route it to a url
+7) Test it ! (prepare everything, flask run and navigate to your page)
+8) Debug it !
+9) Beautify it
+
+=== What to do when you want to create a form ===
+1) Form inherit from flask_wtf.FlaskForm class
+2) Fields are coming from wtforms
+3) For the template, make a form, action should be empty, method should be POST
+4) In the form, we need a hidden_tag, to generate this hidden tag, flask need a secret key, you need 
+to add it in app.config (at the key SECRET_KEY)
+5) In the view, we need to:
+- Specify that POST can be a method (in the app.route)
+- Create a form object
+- check if it has been submitted
+- So smtg with the data and redirect to another page OR send the actual renderedtemplate
