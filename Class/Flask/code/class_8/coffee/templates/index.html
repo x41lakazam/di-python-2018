@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to pyCoffee !</h1>
+<h3>Check out our best coffees:</h3>
+
+    {% for coffee in coffees %}
+        <p>
+            {{ coffee.name }} - ${{ coffee.price }}
+        </p>
+    {% endfor %}
+
+{% endblock %}

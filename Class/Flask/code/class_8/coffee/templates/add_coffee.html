@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add your coffee !</h1>
+<form action="" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.name.label }}
+        {{ form.name(size=32) }}
+        <small>Choose an awesome name!</small>
+    </p>
+     <p>
+        {{ form.strength.label }}
+        {{ form.strength() }}
+    </p>
+   <p>
+        {{ form.price.label }}
+        ${{ form.price()}}
+    </p>
+    <p> {{ form.submit() }} </p>
+
+</form>
+{% endblock %}
