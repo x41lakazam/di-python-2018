@@ -1,5 +1,5 @@
 import flask
-from juices import app, forms, models
+from juices import app, forms, models, db
 
 @app.route('/')
 @app.route("/index")
@@ -13,10 +13,12 @@ def new_juice():
         # Retrieve the data
         name        = form.name.data
         recipe      = form.recipe.data # "onions, tomatoes, banana"
-        recipe_list = [s.strip() for s in recipe.split(",")]
 
         # Create an object
-        juice = models.Juice(name, recipe_list)
+        juice = models.Juice(name=name, recipe=recipe)
+        db.session.add(juice)
+        db.session.commit()
+
         flask.flash("Added {} to juices".format(juice.name))
 
         return flask.redirect(flask.url_for('new_juice'))
@@ -24,7 +26,7 @@ def new_juice():
 
 @app.route('/juices')
 def all_juices():
-    juices_obj = models.Juice.class_objs
+    juices_obj = models.Juice.query.all()
     return flask.render_template("all_juices.html", juices=juices_obj)
 
 @app.route('/stores/new', methods=('GET','POST'))
@@ -32,16 +34,20 @@ def new_store():
     store_form = forms.NewStoreForm()
 
     if store_form.validate_on_submit():
-        name = store_form.name.data
+        name     = store_form.name.data
         location = store_form.location.data
-        open = store_form.open_hour.data
-        close = store_form.close_hour.data
-
-        opening_hours = (open, close)
+        open_h   = store_form.open_hour.data
+        close_h  = store_form.close_hour.data
 
         store = models.Store(name=name,
-                            location=location,
-                            opening_hours=opening_hours)
+                            city=location,
+                            open_h=open_h,
+                            close_h=close_h
+                            )
+
+        db.session.add(store)
+        db.session.commit()
+
         flask.flash("Added {} to the list of stores".format(store.name))
         return flask.redirect(flask.url_for('new_store'))
 

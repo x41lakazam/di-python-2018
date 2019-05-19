@@ -11,4 +11,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = db_path
 db = flask_sqlalchemy.SQLAlchemy(app)
 migrate = flask_migrate.Migrate(app, db)
 
-from juices import routes
+from juices import routes, models

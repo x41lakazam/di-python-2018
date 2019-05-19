@@ -1,10 +1,8 @@
 1) Making a description page for a store
 2) Making a page with a list of every store, with links to 
 the description page
-3) Modify Juice and Store classes so that they implement
-a relation to a store/juice
-every store has a list of juices (objects)
-every juice has one store
-4) Modify the Juice form so you can choose a store (SelectField) <== check
-documentation
 
+--------------------------------------------------------------------------------
+1) Add a "Worker" model, choose the attributes
+2) Add a page to add a worker
+3) Add a page to see every worker profile
