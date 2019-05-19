@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action="" novalidate>
+    {{ myform.hidden_tag() }}
+
+    <p>
+        {{ myform.name.label }}
+        {{ myform.name() }}
+    </p>
+    <p>
+        {{ myform.recipe.label }}
+        {{ myform.recipe() }}
+        <small>{{ myform.recipe.description }}</small>
+    </p>
+
+    <p>
+        {{ myform.submit() }}
+    </p>
+
+</form>
+{% endblock %}
