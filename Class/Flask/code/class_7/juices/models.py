@@ -20,4 +20,21 @@ class Juice:
     def __repr__(self):
         return "<Juice {}>".format(self.name)
 
+class Store:
+
+    nb_of_stores = 0
+    class_objs = []
+
+    def __init__(self, name, location, opening_hours):
+        self.name = name
+        self.location = location
+        self.opening_hours = opening_hours
+
+        self.id  = Store.nb_of_stores
+        Store.nb_of_stores += 1
+
+        Store.class_objs.append(self)
+
+    def __repr__(self):
+        return "<Store {}>".format(self.name)
 

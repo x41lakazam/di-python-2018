@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Our juices:</h1>
+<ul>
+    {% for juice in juices %}
+    <li>{{ juice.name }} </li>
+    {% endfor %}
+</ul>
+{% endblock %}

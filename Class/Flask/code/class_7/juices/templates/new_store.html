@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<form method="post" action="" novalidate>
+    {{ storeform.hidden_tag() }}
+
+    <p>
+        {{ storeform.name.label }}
+        {{ storeform.name() }}
+    </p>
+    <p>
+        {{ storeform.location.label }}
+        {{ storeform.location() }}
+    </p>
+
+    <p>
+        {{ storeform.open_hour.label }}
+        {{ storeform.open_hour(size=3) }}
+        {{ storeform.close_hour.label }}
+        {{ storeform.close_hour(size=3) }} 
+    </p>
+    
+    <p>
+        {{ storeform.submit() }}
+    </p>
+
+</form>
+{% endblock %}
