@@ -29,6 +29,14 @@ def all_juices():
     juices_obj = models.Juice.query.all()
     return flask.render_template("all_juices.html", juices=juices_obj)
 
+@app.route("/juices/<juice_id>")
+def juice_details(juice_id):
+    juice = models.Juice.query.filter_by(id=juice_id).first()
+    return flask.render_template('juice_details.html',
+                         juice=juice
+                         )
+
+
 @app.route('/stores/new', methods=('GET','POST'))
 def new_store():
     store_form = forms.NewStoreForm()

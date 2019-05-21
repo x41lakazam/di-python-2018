@@ -4,7 +4,7 @@
 <h1>Our juices:</h1>
 <ul>
     {% for juice in juices %}
-    <li>{{ juice.name }} </li>
+    <li> <a href="{{ url_for('juice_details', juice_id=juice.id) }}" >{{ juice.name }}</a> </li>
     {% endfor %}
 </ul>
 {% endblock %}
