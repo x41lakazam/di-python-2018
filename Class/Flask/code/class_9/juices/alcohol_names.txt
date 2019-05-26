@@ -1,0 +1,9 @@
+Rum
+Gin
+Tequila
+Brandy
+whisky
+wine
+beer
+tequila
+water

@@ -25,7 +25,4 @@ def cocktail_generator(fruits_file, alcohol_file, juices_file):
 
     return juice
 
-c = cocktail_generator("/tmp/fruits_names.txt", "/tmp/alcool_names.txt",
-                   '/tmp/juices_names.txt')
-print(c)
 
