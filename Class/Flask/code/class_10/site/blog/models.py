@@ -1,11 +1,19 @@
-from blog import db, models
+from blog import db, models, login_mngr
 import datetime
 
-class User(db.Model):
-	
+import flask_login
+
+@login_mngr.user_loader
+def load_user(id):
+    id = int(id)
+    user = User.query.get(id)
+    return user
+
+class User(flask_login.UserMixin, db.Model):
+
 	id      = db.Column(db.Integer(), primary_key=True)
 	name    = db.Column(db.String(32))	
-    
+
 	posts 	= db.relationship('Post', backref="author")
 
 	def __repr__(self):

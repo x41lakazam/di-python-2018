@@ -29,3 +29,28 @@ def add_user():
             return flask.redirect(flask.url_for('homepage'))
 
     return flask.render_template("newuser.html", userform=userform)
+
+
+@app.route('/login', methods=('GET','POST'))
+def login():
+
+    loginform = forms.LoginForm()
+
+    if loginform.validate_on_submit():
+        username = loginform.username.data
+        password = loginform.password.data
+        flask.flash("{} signed in !".format(username))
+        return flask.redirect(flask.url_for('homepage'))
+
+    else:
+        return flask.render_template('login.html',
+                                    form=loginform
+                                    )
+
+
+
+
+
+
+
+
