@@ -4,8 +4,11 @@
 	</head>
 
 	<body>
+        {% for msg in get_flashed_messages() %}
+            <small>{{ msg }}</small>
+        {% endfor %}
 	{% block content %}
 	{% endblock %} 
-
+    
 	</body>
 </html>
