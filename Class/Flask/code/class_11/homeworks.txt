@@ -1,0 +1,9 @@
+In userpage:
+    - If there is no user display a User Not Found page
+    - If the user didn't post anything, display "This user hasn't post yet"
+
+In users:
+    - Link every user to his userpage
+
+In homepage:
+    - Transform it to display the userpage of the logged in user (if a user is logged in, else display a big button to sign in)

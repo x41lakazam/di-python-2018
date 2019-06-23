@@ -8,11 +8,16 @@
         <ul id="navbar">
             <li><a href="{{ url_for('homepage') }}">Home</a></li>
             <li><a href="{{ url_for('show_users') }}">Users</a></li>
+
             {% if current_user.is_anonymous %}
+
             <li><a href="{{ url_for('login') }}">Sign in</a></li>
             <li><a href="{{ url_for('add_user') }}">Sign up</a></li>
+
             {% else %}
+            <li><a href="{{ url_for('newpost') }}">New Post</a></li>
             <li class="no_hover" style="float: right;"><span>Logged as: {{ current_user.name }} (<a href="{{ url_for('logout') }}">Sign out</a>)</span></li>
+
             {% endif %}
 
         </ul>

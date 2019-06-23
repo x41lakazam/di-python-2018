@@ -6,6 +6,13 @@ from blog import app, models, forms, db
 def homepage():
 	return flask.render_template("index.html")
 
+@app.route("/user/<int:user_id>")
+def userpage(user_id):
+    user_obj = models.User.query.filter_by(id=user_id).first()
+
+    return flask.render_template('userpage.html',
+                                usr=user_obj)
+
 @app.route("/users")
 def show_users():
     # Retrieve users
@@ -52,7 +59,8 @@ def login():
 
         user_handler = models.UserHandler(user)
         if user_handler.login(password):
-            flask.flash("{} signed in !".format(username))
+            flask.flash("{} logged in !".format(username))
+            print('current_user:',flask_login.current_user)
             return flask.redirect(flask.url_for('homepage'))
         else:
             flask.flash("Something went wrong")
@@ -75,6 +83,31 @@ def secret():
 def unauthorized(e):
     print(str(e))
     return flask.render_template('401.html')
+
+@app.route("/new_post", methods=('GET', 'POST'))
+def newpost():
+    if not flask_login.current_user.is_authenticated:
+        flask.flash("You need to be logged in to post something.")
+        return flask.redirect(flask.url_for('login'))
+
+    postform = forms.NewPostForm()
+
+    if postform.validate_on_submit():
+        print("Debug")
+        title   = postform.title.data
+        content = postform.content.data
+        post    = models.Post(title=title, content=content)
+
+        current_user = flask_login.current_user
+        user_id = current_user.id
+
+        post_handler = models.PostHandler(post, user_id)
+        post_handler.add_to_db()
+
+        flask.flash("Your post for the blog has been added!")
+        return flask.redirect(flask.url_for('homepage'))
+
+    return flask.render_template("newpost.html", postform=postform)
 
 
 

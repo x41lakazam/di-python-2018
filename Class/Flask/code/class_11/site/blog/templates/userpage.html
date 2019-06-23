@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+        
+    <h1>{{ usr.name }}</h1>
+    <hr>
+    <h3>Posts:</h3>
+    <ul>    
+    {% for post in usr.posts %}
+    <li><p><b>{{ post.title }}: </b>{{ post.content }}</p></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+body {
+    background-color: #cddbe7;
+    margin: 0px;
+}
+
+#main_container {
+    margin: 20px 100px;
+}
+
+#navbar{
+    width: 100%;
+    background-color: #253a4e;
+    margin: 0;
+    padding: 0;
+    height: 35px;
+}
+
+#navbar li{
+    float: left;
+    padding: 8px;
+    display: block;
+}
+
+#navbar li:not(.no_hover):hover{
+    background-color: #355471;
+}
+
+#navbar li *{
+
+    color: #f0f4f8;
+}
+
+#navbar li a{
+    text-decoration: none;
+}
+#navbar li span a:hover{
+    color: #355471;
+}
+
