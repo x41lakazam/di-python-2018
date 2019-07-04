@@ -4,11 +4,18 @@ from blog import app, models, forms, db
 
 @app.route("/")
 def homepage():
-	return flask.render_template("index.html")
+
+    current_usr = flask_login.current_user
+    if current_usr.is_authenticated:
+        return userpage(user_id=current_usr.id)
+
+    return flask.render_template("index.html")
 
 @app.route("/user/<int:user_id>")
 def userpage(user_id):
     user_obj = models.User.query.filter_by(id=user_id).first()
+    if not user_obj:
+        return custom_error("This user doesn't exist")
 
     return flask.render_template('userpage.html',
                                 usr=user_obj)
@@ -79,11 +86,6 @@ def logout():
 def secret():
     return flask.render_template('secret.html')
 
-@app.errorhandler(401)
-def unauthorized(e):
-    print(str(e))
-    return flask.render_template('401.html')
-
 @app.route("/new_post", methods=('GET', 'POST'))
 def newpost():
     if not flask_login.current_user.is_authenticated:
@@ -109,10 +111,21 @@ def newpost():
 
     return flask.render_template("newpost.html", postform=postform)
 
+# Errors
 
+@app.errorhandler(401)
+def unauthorized(e):
+    print(str(e))
+    return flask.render_template('401.html')
 
+def custom_error(error_msg):
+    return flask.render_template('custom_err.html',
+                                err_msg=error_msg
+                                )
 
-
+@app.route('/test')
+def test_page():
+    return custom_error("Sorry, page not found")
 
 
 

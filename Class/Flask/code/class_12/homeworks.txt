@@ -1,0 +1,6 @@
+In userpage:
+    - Add a follow button
+    - Add a link to list of followers/followed (You can display their name)
+
+Followers/Followed page:
+    - Display a list of users (As links to their userpage)

@@ -10,13 +10,31 @@ def load_user(id):
     user = User.query.get(id)
     return user
 
+followers = db.Table(
+    'followers',
+    db.Column('follower_id', db.Integer(), db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer(), db.ForeignKey('user.id'))
+)
+
 class User(flask_login.UserMixin, db.Model):
 
     id              = db.Column(db.Integer(), primary_key=True)
     name            = db.Column(db.String(32))
     password_hash   = db.Column(db.String(256))
+    last_seen       = db.Column(db.DateTime(), default=datetime.datetime.now())
 
     posts = db.relationship('Post', backref="author")
+
+    followed = db.relationship(
+        'User', secondary=followers,
+        primaryjoin=(followers.c.follower_id == id),
+        secondaryjoin=(followers.c.followed_id == id),
+        backref=db.backref('followers', lazy='dynamic'),
+        lazy='dynamic'
+     )
+
+    def has_posts(self):
+        return len(self.posts) > 0
 
     def __repr__(self):
         return "<User {}>".format(self.name)
@@ -65,7 +83,17 @@ class UserHandler:
             return False
 
         flask_login.login_user(self.user_obj,remember=remember)
+        self.update_last_seen()
         return True
+
+    def update_last_seen(self):
+        self.user_obj.last_seen = datetime.datetime.now()
+        db.session.commit()
+
+    def follow(self, id_to_follow):
+        usr = User.query.filter_by(id=id_to_follow).first()
+        usr.followers.append(self.user_obj)
+        self.user_obj.followed.append(usr)
 
 class PostHandler():
 

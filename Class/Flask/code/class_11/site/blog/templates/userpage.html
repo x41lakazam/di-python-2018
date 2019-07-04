@@ -3,12 +3,21 @@
 {% block content %}
         
     <h1>{{ usr.name }}</h1>
+    <small>Last seen on {{ usr.last_seen }}</small>
     <hr>
-    <h3>Posts:</h3>
-    <ul>    
-    {% for post in usr.posts %}
-    <li><p><b>{{ post.title }}: </b>{{ post.content }}</p></li>
-    {% endfor %}
-    </ul>
 
+    {% if usr.has_posts()  %}
+
+        <h3>Posts:</h3>
+        <ul>    
+        {% for post in usr.posts %}
+        <li><p><b>{{ post.title }}: </b>{{ post.content }}</p></li>
+        {% endfor %}
+        </ul>
+    
+    {% else %}
+
+        <h3>{{ usr.name }} hasn't post anything yet..</h3>    
+
+    {% endif %}
 {% endblock %}
