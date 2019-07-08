@@ -1,6 +1,7 @@
-from blog import db, models, login_mngr
+from blog import db, models, login_mngr, app
+import time
 import datetime
-
+import jwt
 import flask_login
 from werkzeug import security as sec
 
@@ -19,7 +20,8 @@ followers = db.Table(
 class User(flask_login.UserMixin, db.Model):
 
     id              = db.Column(db.Integer(), primary_key=True)
-    name            = db.Column(db.String(32))
+    name            = db.Column(db.String(32), unique=True)
+    email           = db.Column(db.String(128), unique=True)
     password_hash   = db.Column(db.String(256))
     last_seen       = db.Column(db.DateTime(), default=datetime.datetime.now())
 
@@ -40,8 +42,6 @@ class User(flask_login.UserMixin, db.Model):
         user = self.followed.filter_by(id=user_id).first()
         if not user: return False
         return True
-
-
 
     def __repr__(self):
         return "<User {}>".format(self.name)
@@ -121,6 +121,26 @@ class UserHandler:
         self.user_obj.followed.remove(usr)
         db.session.commit()
         return True
+
+    def get_reset_password_token(self, expiration=600):
+        payload = {
+            'reset_password': self.user_obj.id,
+            'exp': time.time()+expiration
+        }
+
+        secret = app.config['SECRET_KEY']
+        token = jwt.encode(payload, secret, algorithm='HS256')
+
+        token_as_string = token.decode('utf-8')
+        return token_as_string
+
+    def decode_reset_password_token(self, token):
+        decoded = jwt.decode(token, app.config['SECRET_KEY'],
+                             algorithm='HS256')
+
+        user_id = decoded['reset_password']
+
+        return user_id
 
 class PostHandler():
 

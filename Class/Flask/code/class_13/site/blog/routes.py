@@ -35,9 +35,10 @@ def add_user():
     userform = forms.NewUserForm()
     if userform.validate_on_submit():
         name = userform.name.data
+        email = userform.email.data
         pwd  = userform.password.data
 
-        user = models.User(name=name)
+        user = models.User(name=name, email=email)
 
         handler = models.UserHandler(user)
         handler.add_pwd(pwd)
@@ -153,23 +154,29 @@ def user_followings(user_id):
 def reset_password_request():
     pwd_req_form = forms.ResetPasswordRequestForm()
     if pwd_req_form.validate_on_submit():
-        ### FAKE ###
-        user = models.User.query.all()[0]
-        ### END OF FAKE ###
+        user_email = pwd_req_form.email.data
+        user_email = user_email.lower().strip()
+        user = models.User.query.filter_by(email=user_email).first()
+
         if not user:
             flask.flash('Wrong mail')
             return flask.redirect(flask.url_for('reset_password_request'))
 
         # Send a mail to the user
-        send_pwdreset_mail_to_user(user)
+        email.send_pwdreset_mail_to_user(user)
 
     return flask.render_template(
         "reset_password_request.html", 
          form=pwd_req_form
     )
 
-@app.route('/reset_password/<int:user_id>', methods=('GET','POST'))
-def reset_user_password(user_id):
+@app.route('/reset_password/<token>', methods=('GET','POST'))
+def reset_user_password(token):
+
+    # Get id with token
+    fake_handler = models.UserHandler('fake_user')
+    user_id = fake_handler.decode_reset_password_token(token)
+
     reset_pwd_form = forms.ResetPassword()
     if reset_pwd_form.validate_on_submit():
         pwd = reset_pwd_form.password.data
@@ -186,17 +193,6 @@ def reset_user_password(user_id):
 
 def render_user_list(user_list, title):
     return flask.render_template("userlist.html", user_list=user_list, title=title)
-
-# Server functions
-
-def send_pwdreset_mail_to_user(user):
-    email.send_email(
-        "Reset password",
-        sender=app.config['ADMINS'][0],
-        receivers=["klein.fannie@gmail.com"], #receivers=[user.mail]
-        text_body="-- Reset your password --"
-    )
-
 
 # Errors
 
