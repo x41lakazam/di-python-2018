@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="userpage_header">
+        <div id="left_userpage_header">
+        <img class="profile_picture" src="{{ usr.pp_path }}"> <h1>{{ usr.name }}</h1>
+        <h4><a href="{{ url_for('user_followers', user_id=usr.id) }}">{{
+                followers_n }} Followers</a> - <a href="{{
+                url_for('user_followings', user_id=usr.id) }}">{{ following_n
+                }} Follows</a></h4>
+        <small>Last seen on {{ usr.last_seen }}</small>
+        </div>
+        {% if current_user.is_authenticated and current_user.id != usr.id %}
+
+        <div id="right_userpage_header">
+            {% if  current_user.follows(usr.id) %}
+                    <form method="post" action="{{ url_for('unfollow', user_id=usr.id, callback=url_for('userpage', user_id=usr.id) )}}">                     <button type ='submit'>Unfollow</button>
+
+                {% else %}
+                    <form method="post" action="{{ url_for('follow', user_id=usr.id, callback=url_for('userpage', user_id=usr.id) )}}"> 
+                    <button type ='submit'>Follow</button>
+                {% endif %}
+            </form>
+        {% endif %}
+
+        </div>
+    </div>
+
+    <hr>
+
+    {% if usr.has_posts()  %}
+
+        <h3>Posts:</h3>
+        <ul>    
+        {% for post in usr.posts %}
+        <li><p><b>{{ post.title }}: </b>{{ post.content }}</p></li>
+        {% endfor %}
+        </ul>
+    
+    {% else %}
+
+        <h3>{{ usr.name }} hasn't post anything yet..</h3>    
+
+    {% endif %}
+{% endblock %}
