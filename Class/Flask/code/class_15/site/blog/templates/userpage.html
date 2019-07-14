@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="userpage_header">
+        <div id="left_userpage_header">
+            <div class="pp_and_name">
+                <div class="pp_avatar">
+                <img class="profile_picture" src="{{ usr.pp_path }}">
+                </div>
+                <div class="username_div">                
+                    <h1> {{ usr.name | capitalize }}</h1> 
+                    <a href="{{ url_for('change_pp') }}">Change profile picture</a>
+                </div>
+
+            </div>
+
+        {% if  current_user.is_authenticated and usr.id == current_user.id %}
+        {% endif %}
+
+        <h4><a href="{{ url_for('user_followers', user_id=usr.id) }}">{{
+                followers_n }} Followers</a> - <a href="{{
+                url_for('user_followings', user_id=usr.id) }}">{{ following_n
+                }} Follows</a></h4>
+        <small>Last seen on {{ usr.last_seen.day }}/{{ usr.last_seen.month }}/{{
+            usr.last_seen.year }}</small>
+        </div>
+        {% if current_user.is_authenticated and current_user.id != usr.id %} <div id="right_userpage_header">
+            {% if  current_user.follows(usr.id) %}
+                    <form method="post" action="{{ url_for('unfollow', user_id=usr.id, callback=url_for('userpage', user_id=usr.id) )}}">                     <button type ='submit'>Unfollow</button>
+
+                {% else %}
+                    <form method="post" action="{{ url_for('follow', user_id=usr.id, callback=url_for('userpage', user_id=usr.id) )}}"> 
+                    <button type ='submit'>Follow</button>
+                {% endif %}
+            </form>
+        {% endif %}
+
+        </div>
+
+    <hr>
+
+    {% if usr.has_posts()  %}
+
+        <h3>Posts:</h3>
+        <ul class="posts_list">    
+        {% for post in usr.posts %}
+        <li>
+        <div class="post_container">
+            <div class="pic_container">
+                <img class="profile_miniature" src="{{ usr.pp_path }}">
+            </div>
+            <div class="msg_container">            
+                <p><b>{{ post.title }}: </b>{{ post.content }}</p>
+            </div>
+
+        </div>
+        </li>
+
+        {% endfor %}
+        </ul>
+    
+    {% else %}
+
+        <h3>{{ usr.name }} hasn't post anything yet..</h3>    
+    {% endif %}
+
+{% endblock %}
