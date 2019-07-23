@@ -37,6 +37,7 @@ def populate(nb):
             generate_userpost(user) 
 
         try:
+            db.session.add(user)
             db.session.commit()
         except:
             db.session.rollback()

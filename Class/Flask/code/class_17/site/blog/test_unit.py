@@ -35,8 +35,8 @@ def populate(nb):
         user = generate_user()
         for j in range(random.randint(0,200)):
             generate_userpost(user) 
-
         try:
+            db.session.add(user)
             db.session.commit()
         except:
             db.session.rollback()
