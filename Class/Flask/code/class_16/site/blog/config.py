@@ -3,7 +3,7 @@ import os
 DEBUG = True
 
 # Upload config
-UPLOAD_FOLDER = "/home/pi/Documents/work/dev_institute/Courses/1python/Class/Flask/code/class_15/site/blog/static/uploads"
+UPLOAD_FOLDER = "/home/pi/Documents/work/dev_institute/Courses/1python/Class/Flask/code/class_16/site/blog/static/uploads"
 
 # Security config
 SECRET_KEY = 'my-secret-key'

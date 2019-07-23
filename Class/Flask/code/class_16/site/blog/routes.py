@@ -27,13 +27,43 @@ def userpage(user_id):
                                  usr = user_obj
                                 )
 
-@app.route("/users")
+@app.route("/users", methods=("GET","POST"))
 def show_users():
     # Retrieve users
-    users = models.User.query.all()
+    users = models.User.query
+
+    page_nb = flask.request.args.get('page_nb', 1, type=int)
+
+    elems_per_page  = 20
+    page            = users.paginate(page_nb, elems_per_page, False)
+
+    ##############################################
+    # Pagination object has 4 attributes
+    # next_num: the next index
+    # prev_num: the prev index 
+    # has_next: True if the page has a next url
+    # has_prev: True if the page has a next url
+    #############################################
+
+    # Build the next url
+    if page.has_next:
+        next_url = flask.url_for('show_users', page_nb=page.next_num)
+    else:
+        next_url = None
+
+    if page.has_prev:
+        prev_url = flask.url_for('show_users', page_nb=page.prev_num)
+    else:
+        prev_url = None
+
+    pag_users = page.items
 
     # Render template
-    return flask.render_template("users.html", users=users)
+    return flask.render_template("users.html", 
+                                 users=pag_users,
+                                 next_url=next_url,
+                                 prev_url=prev_url
+                                )
 
 @app.route("/users/new", methods=('GET', 'POST'))
 def add_user():
@@ -136,6 +166,18 @@ def change_pp():
         print("User {} picture is now {}".format(current_usr,
                                                  current_usr.pp_path))
     return flask.render_template('change_pp.html')
+
+@app.route('/feed')
+def feed():
+    followers_posts = []
+    for user in flask_login.current_user.followed:
+        user_posts = user.posts
+        followers_posts.extend(user_posts)
+    followers_posts.sort(key=lambda post: post.date.timestamp())
+
+    last_posts = followers_posts[:50]
+    return flask.render_template("feed.html", posts=last_posts)
+
 
 #management urls
 

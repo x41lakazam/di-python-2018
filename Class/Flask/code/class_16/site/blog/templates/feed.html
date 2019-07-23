@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+    <ul class="posts_list">    
+        {% for post in posts %}
+        <li>
+        <div class="post_container">
+            <div class="pic_container">
+                <img class="profile_miniature" src="{{ post.get_user().pp_path }}">
+            </div>
+            <div class="msg_container">            
+                <p><b>{{ post.title }}: </b>{{ post.content }}</p>
+            </div>
+
+        </div>
+        </li>
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+

@@ -9,4 +9,14 @@
 
     {% endfor %}
     </ul>
+    <div style="display:inline; width:200px; align:center;">    
+        {% if prev_url %}
+            <a style="float: left;" href="{{ prev_url }}">Newer users</a>     
+        {% endif %}
+        {% if next_url %}
+            <a style="float:right;" href="{{ next_url }}">Older users</a>
+        {% endif %}
+
+    </div>
+
 {% endblock %}
