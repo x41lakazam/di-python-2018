@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<title>Test</title>
+	</head>
+	<body>
+        <select id="user">
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.name }}</option>
+            {% endfor %}
+        </select>
+
+        <select id="followers">
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.name }}</option>
+            {% endfor %}
+        </select>
+
+        <script>
+            let user_select = document.getElementById('user');
+            let followers_select = document.getElementById('followers');
+            
+            user_select.onchange = function (){
+                user_id = user_select.value;
+                fetch('/api/get_followers/'+user_id).then(function(response){
+                    response.json().then(function(data){
+                        let newHTML = "";
+                        for (let user in data){
+                            newHTML += '<option value="'+user.id+'">'+user.name+'</option>';
+
+                    }
+                        followers_select.innerHTML = newHTML;
+                    }); 
+                
+                });
+            } 
+
+        </script>
+	</body>
+</html>

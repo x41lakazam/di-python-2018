@@ -48,6 +48,17 @@ class User(flask_login.UserMixin, db.Model):
         if not user: return False
         return True
 
+    def to_json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'pp_path': self.pp_path,
+            'last_seen': self.last_seen,
+            'posts': [p.id for p in self.posts]
+        }
+
+
     def __repr__(self):
         return "<User {}>".format(self.name)
 

@@ -274,6 +274,10 @@ def unauthorized(e):
     print(str(e))
     return flask.render_template('401.html')
 
+@app.errorhandler(404)
+def notfound(e):
+    return flask.redirect('/')
+
 def custom_error(error_msg):
     return flask.render_template('custom_err.html',
                                 err_msg=error_msg
@@ -281,30 +285,39 @@ def custom_error(error_msg):
 
 @app.route('/test', methods=('GET', 'POST'))
 def test_page():
-    if flask.request.method == 'POST':
-        if 'file' not in flask.request.files:
-            return flask.redirect(flask.url_for('test_page'))
+    return flask.render_template('test.html', users=models.User.query.all())
 
-        file = flask.request.files['file']
-        file_name = file.filename
-        filepath  = app.config['UPLOAD_FOLDER']
-        file_full_path = os.path.join(filepath, file_name)
+@app.before_request
+def require_login():
+    print(flask.request.url)
 
-        file.save(file_full_path)
-
-    return flask.render_template("upload.html")
-
+@app.after_request
+def after_request(response):
+    print(response)
+    return response
 
 # Api functions
-@app.route('/api/userlist')
+@app.route('/api/userlist.json')
 def api_list_users():
     users = models.User.query.all()
     # usernames = [user.name for user in users]
     usernames = []
     for user in users:
-        usernames.append(user.name)
+        usernames.append(user.to_json())
 
     return flask.jsonify(usernames)
+
+@app.route('/api/get_followers/<int:user_id>')
+def get_followers_list(user_id):
+    user = models.User.query.get(user_id)
+    if not user:
+        return flask.jsonify([])
+    followers = [u.to_json() for u in user.followed]
+    print(user.followers)
+    print(followers)
+
+    return flask.jsonify(followers)
+
 
 
 
